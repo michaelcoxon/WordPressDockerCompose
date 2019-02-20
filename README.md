@@ -25,7 +25,7 @@ run `docker-compose down --volumes` to kill the instances.
 Your files will remain - just delete them after
 
 default phpmyadmin credentials are:  
- - **Username*: `root`
- - **Password*: `toor` 
+ - **Username**: `root`
+ - **Password**: `toor` 
  
 Change it in the `docker-compose.yml` file if you want.
