@@ -1,0 +1,67 @@
+# docker compose for WordPress development
+# This will create a folder for wp-content and the database
+# in the folder it is run from. You will be able to access 
+# phpmyadmin and the site from the ports you set below.
+#
+# How to use
+#
+# For each running instance change the port numbers for 
+# phpmyadmin and wordpress. (this is the first parameter in ports)
+#
+# run `docker-compose up -d` in the directory this file is in 
+# to stand the containers up. WordPress takes a bit to work.
+#
+# run `docker-compose down --volumes` to kill the instances. 
+# Your files will remain - just delete them after
+#
+# default root password is `toor` change it below if you want
+version: '3.7'
+
+services:
+    db:
+        image: mysql:5.7
+        volumes:
+            - ./db_data:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: toor
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
+        networks:
+            - back
+        
+    phpmyadmin:
+        depends_on:
+            - db
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            #change to 8080 to the port you want on your local machine
+            - 8080:80
+        environment:
+            PMA_HOST: db
+            MYSQL_ROOT_PASSWORD: toor
+        networks:
+            - back
+            
+    wordpress:
+        depends_on:
+            - db
+        image: wordpress:latest
+        ports:
+            #change to 8000 to the port you want on your local machine
+            - 8000:80
+        networks:
+            - back
+        restart: always
+        volumes:
+            - ./wp-content:/var/www/html/wp-content 
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_USER: wordpress
+            WORDPRESS_DB_PASSWORD: wordpress
+            WORDPRESS_DB_NAME: wordpress
+        
+networks:
+    back:
