@@ -24,5 +24,8 @@ to stand the containers up. WordPress takes a bit to work.
 run `docker-compose down --volumes` to kill the instances. 
 Your files will remain - just delete them after
 
-default root password is `toor` change it in the `docker-compose.yml` 
-file if you want
+default phpmyadmin credentials are:  
+ - **Username*: `root`
+ - **Password*: `toor` 
+ 
+Change it in the `docker-compose.yml` file if you want.
