@@ -1,9 +1,9 @@
 # WordPress Docker Compose
 A Docker Compose file for standing up development instances of WordPress
 
-## Sources
-https://docs.docker.com/compose/wordpress/
-https://cntnr.io/setting-up-wordpress-with-docker-262571249d50
+## Sources  
+ - https://docs.docker.com/compose/wordpress/
+ - https://cntnr.io/setting-up-wordpress-with-docker-262571249d50
 
 ## Usage
 This will create a folder for wp-content and the database
